@@ -15,8 +15,8 @@ services:
     hostname: mysql
     # 外部に公開するポートを指定する
     # これがないと外部からアクセスできない
-    ports:
-      - "3306:3306"
+    # ports:
+    #   - "3306:3306"
     # mysqlの設定
     environment:
       MYSQL_USER: root
@@ -30,9 +30,9 @@ services:
     volumes:
       - "db-data:/var/lib/mysql"
       # 初期設定を読み込む
-      - "./docker/mysql/my.conf:/etc/mysql/my.conf"
+      - "./docker/mysql/:/etc/mysql/my.conf"
       # MySQL起動時にDBを作成する
-      - "./docker/mysql/init/:/docker-entrypoint-initdb.d"
+      - "./docker/mysql/:/docker-entrypoint-initdb.d"
 
   # ここからはGolangのアプリケーションに対する情報
   sample_docker_compose_go:
